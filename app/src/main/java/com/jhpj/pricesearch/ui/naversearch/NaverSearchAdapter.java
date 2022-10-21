@@ -32,18 +32,8 @@ public class NaverSearchAdapter extends RecyclerView.Adapter<NaverSearchAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull NaverSearchAdapter.ViewHolder holder, int position) {
-//        SearchDataList data = data.get(position);
-//
-//        Glide.with(activity)
-//                .load(data.getImage())
-//                .diskCacheStrategy(DiskCacheStrategy.ALL)
-//                .into(holder.imageView);
-//
-//        holder.textView.setText(data.getName());
-
         SearchDataList data = datas.get(position);
         holder.setItem(data);
-        Glide.with(holder.itemView.getContext()).load(data.getImage()).into(holder.image);
     }
 
     @Override
@@ -62,6 +52,7 @@ public class NaverSearchAdapter extends RecyclerView.Adapter<NaverSearchAdapter.
         }
 
         public void setItem(SearchDataList data) {
+            Glide.with(image.getContext()).load(data.getImage()).into(image);
             title.setText(data.getTitle());
         }
     }
