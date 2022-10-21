@@ -96,11 +96,7 @@ public class NaverSearchFragment extends Fragment {
                     recyclerView.setAdapter(mAdapter);
                     progressBar.setVisibility(View.GONE);
 
-//                    for (int i = 0; i < result.getSearchDataList().size(); i++) {
-//                        Log.e(TAG, "성공 : " + result.getSearchDataList().get(i));
-//                    }
-
-                    Log.e(TAG, "성공 : " + result.getSearchDataList().toString());
+                    Log.e(TAG, "성공 : " + result.toString());
                 } else {
                     Log.e(TAG, "실패 : " + response.body());
                 }

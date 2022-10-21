@@ -61,4 +61,15 @@ public class SearchResult {
     public void setSearchDataList(List<SearchDataList> searchDataList) {
         SearchDataList = searchDataList;
     }
+
+    @Override
+    public String toString() {
+        return "{SearchResult{" +
+                "lastBuildDate='" + lastBuildDate + '\'' +
+                ", total='" + total + '\'' +
+                ", start='" + start + '\'' +
+                ", display='" + display + '\'' +
+                ", SearchDataList=" + SearchDataList.toString() +
+                '}';
+    }
 }
