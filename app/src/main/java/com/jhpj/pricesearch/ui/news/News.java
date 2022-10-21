@@ -6,7 +6,7 @@ public class News {
     public String url;
     public String imageUrl;
 
-    public News(String title, String author, String url, String urlToImage){
+    public News(String title, String author, String url, String urlToImage) {
         this.title = title;
         this.author = author;
         this.url = url;

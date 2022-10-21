@@ -1,16 +1,16 @@
-package com.jhpj.pricesearch.ui.slideshow;
+package com.jhpj.pricesearch.ui.naversearch;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class SlideshowViewModel extends ViewModel {
+public class NaverSearchViewModel extends ViewModel {
 
     private final MutableLiveData<String> mText;
 
-    public SlideshowViewModel() {
+    public NaverSearchViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is slideshow fragment");
+        mText.setValue("This is naversearch fragment");
     }
 
     public LiveData<String> getText() {

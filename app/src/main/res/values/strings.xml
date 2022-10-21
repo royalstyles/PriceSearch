@@ -10,5 +10,5 @@
 
     <string name="menu_news">News</string>
     <string name="menu_movie">Movie</string>
-    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_naversearch">NaverSearch</string>
 </resources>

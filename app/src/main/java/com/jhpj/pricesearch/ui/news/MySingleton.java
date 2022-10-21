@@ -12,14 +12,14 @@ public class MySingleton {
     private RequestQueue requestQueue;
     private static Context ctx;
 
-    private MySingleton(Context context){
+    private MySingleton(Context context) {
         Log.d(getClass().getName(), "MySingleton(Context context)");
         ctx = context;
         requestQueue = getRequestQueue();
     }
 
-    public static synchronized MySingleton getInstance(Context context){
-        if(instance == null){
+    public static synchronized MySingleton getInstance(Context context) {
+        if (instance == null) {
             instance = new MySingleton(context);
         }
         return instance;
@@ -27,7 +27,7 @@ public class MySingleton {
 
     private RequestQueue getRequestQueue() {
         Log.d(getClass().getName(), "RequestQueue getRequestQueue()");
-        if (requestQueue == null){
+        if (requestQueue == null) {
             requestQueue = Volley.newRequestQueue(ctx.getApplicationContext());
         }
         return requestQueue;

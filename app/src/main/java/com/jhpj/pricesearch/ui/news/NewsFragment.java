@@ -66,7 +66,7 @@ public class NewsFragment extends Fragment implements NewsItemClicked {
         binding = null;
     }
 
-    private void fetch_date(){
+    private void fetch_date() {
         Log.d(getClass().getName(), "fetch_date()");
 
         String url = "https://newsapi.org/v2/everything?q=apple&from=" + getDate() + "&to=" + getDate() + "&sortBy=popularity&apiKey=63c99fa5e438467189add97cafe6145f";
@@ -99,8 +99,7 @@ public class NewsFragment extends Fragment implements NewsItemClicked {
             public void onErrorResponse(VolleyError error) {
                 Log.d(getClass().getName(), "onErrorResponse() ; " + error);
             }
-        })
-        {
+        }) {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Log.d(getClass().getName(), "getHeaders()");

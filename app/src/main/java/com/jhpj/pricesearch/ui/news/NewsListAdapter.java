@@ -18,7 +18,8 @@ import java.util.ArrayList;
 public class NewsListAdapter extends RecyclerView.Adapter<NewsViewHolder> {
     ArrayList<News> items = new ArrayList<News>();
     private NewsItemClicked listener;
-    public NewsListAdapter(NewsItemClicked newsItemClicked){
+
+    public NewsListAdapter(NewsItemClicked newsItemClicked) {
         Log.d(getClass().getName(), "NewsListAdapter(NewsItemClicked newsItemClicked)");
 
         this.listener = newsItemClicked;
@@ -47,9 +48,9 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsViewHolder> {
 
         News currentItem = items.get(position);
         holder.textView.setText(currentItem.title);
-        if(currentItem.author.equals("null")){
+        if (currentItem.author.equals("null")) {
             holder.author.setText("Unknown Source");
-        }else{
+        } else {
             holder.author.setText((currentItem.author));
         }
         Glide.with(holder.itemView.getContext()).load(currentItem.imageUrl).into(holder.image);
@@ -58,11 +59,10 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsViewHolder> {
     @Override
     public int getItemCount() {
         Log.d(getClass().getName(), "getItemCount()");
-
         return items.size();
     }
 
-    public void updateNews(ArrayList<News> updateNews){
+    public void updateNews(ArrayList<News> updateNews) {
         Log.d(getClass().getName(), "updateNews(ArrayList<News> updateNews)");
 
         items.clear();

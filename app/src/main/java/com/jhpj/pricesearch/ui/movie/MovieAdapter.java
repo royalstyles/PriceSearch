@@ -12,18 +12,18 @@ import com.jhpj.pricesearch.R;
 
 import java.util.List;
 
-public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
+public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> {
 
     private List<DailyBoxOfficeList> items;
 
-    public MovieAdapter(List<DailyBoxOfficeList> items){
+    public MovieAdapter(List<DailyBoxOfficeList> items) {
         this.items = items;
     }
 
     @NonNull
     @Override
     public MovieAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_movies , parent, false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_movies, parent, false);
         return new ViewHolder(itemView);
     }
 
@@ -48,7 +48,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
             openDt = itemView.findViewById(R.id.openDt);
         }
 
-        public void setItem(DailyBoxOfficeList item){
+        public void setItem(DailyBoxOfficeList item) {
             rank.setText(item.getRank());
             movieNm.setText(item.getMovieNm());
             openDt.setText("개봉일 : " + item.getOpenDt());
