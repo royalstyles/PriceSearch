@@ -1,7 +1,6 @@
 package com.jhpj.pricesearch.ui.naversearch;
 
 import android.app.Activity;
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.jhpj.pricesearch.R;
 
 import java.util.List;
@@ -43,6 +43,7 @@ public class NaverSearchAdapter extends RecyclerView.Adapter<NaverSearchAdapter.
 
         SearchDataList data = datas.get(position);
         holder.setItem(data);
+        Glide.with(holder.itemView.getContext()).load(data.getImage()).into(holder.image);
     }
 
     @Override
@@ -51,18 +52,17 @@ public class NaverSearchAdapter extends RecyclerView.Adapter<NaverSearchAdapter.
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView imageView;
-        TextView textView;
+        ImageView image;
+        TextView title;
 
         public ViewHolder(@NonNull View view) {
             super(view);
-            imageView = view.findViewById(R.id.image);
-            textView = view.findViewById(R.id.title);
+            image = view.findViewById(R.id.image);
+            title = view.findViewById(R.id.title);
         }
 
         public void setItem(SearchDataList data) {
-            imageView.setImageURI(Uri.parse(data.getImage()));
-            textView.setText(data.getTitle());
+            title.setText(data.getTitle());
         }
     }
 }
