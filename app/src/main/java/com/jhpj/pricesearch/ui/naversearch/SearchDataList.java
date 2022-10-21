@@ -159,4 +159,23 @@ public class SearchDataList {
         this.category4 = category4;
     }
 
+    @Override
+    public String toString() {
+        return "SearchDataList{" +
+                "title='" + title + '\'' +
+                ", link='" + link + '\'' +
+                ", image='" + image + '\'' +
+                ", lprice='" + lprice + '\'' +
+                ", hprice='" + hprice + '\'' +
+                ", mallName='" + mallName + '\'' +
+                ", productId='" + productId + '\'' +
+                ", productType='" + productType + '\'' +
+                ", brand='" + brand + '\'' +
+                ", maker='" + maker + '\'' +
+                ", category1='" + category1 + '\'' +
+                ", category2='" + category2 + '\'' +
+                ", category3='" + category3 + '\'' +
+                ", category4='" + category4 + '\'' +
+                '}';
+    }
 }

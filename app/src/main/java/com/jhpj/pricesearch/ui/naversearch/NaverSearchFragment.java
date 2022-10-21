@@ -85,7 +85,7 @@ public class NaverSearchFragment extends Fragment {
     void getResultSearch(String query) {
         progressBar.setVisibility(View.VISIBLE);
         apiInterface = ApiClient.getInstance().create(ApiInterface.class);
-//        apiInterface.getSearchResult(client_id, client_pw, "book.json", query);
+//        apiInterface.getSearchResult(client_id, client_pw, "book.json", query).enqueue(new Callback<SearchResult>() {
         apiInterface.getSearchResult(client_id, client_pw, "shop.json", query).enqueue(new Callback<SearchResult>() {
             @Override
             public void onResponse(Call<SearchResult> call, Response<SearchResult> response) {
@@ -95,6 +95,10 @@ public class NaverSearchFragment extends Fragment {
                     mAdapter = new NaverSearchAdapter(result.getSearchDataList());
                     recyclerView.setAdapter(mAdapter);
                     progressBar.setVisibility(View.GONE);
+
+//                    for (int i = 0; i < result.getSearchDataList().size(); i++) {
+//                        Log.e(TAG, "성공 : " + result.getSearchDataList().get(i));
+//                    }
 
                     Log.e(TAG, "성공 : " + result.getSearchDataList().toString());
                 } else {
