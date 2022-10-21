@@ -6,12 +6,16 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.annotation.NonNull;
@@ -43,9 +47,9 @@ public class MainActivity extends AppCompatActivity {
         Log.d(getClass().getName(), "KJH : " + Thread.currentThread().getStackTrace()[2].getMethodName());
         DrawerLayout drawer = binding.drawerLayout;
         // 네비게이션 뷰가 열려있으면 닫는다.
-        if (drawer.isDrawerOpen(GravityCompat.START)){
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawers();
-        }else {
+        } else {
 //             기존 뒤로가기 버튼의 기능을 막기위해 주석처리 또는 삭제
 //             super.onBackPressed();
 //
@@ -67,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
             // 마지막으로 뒤로가기 버튼을 눌렀던 시간이 2초가 지나지 않았으면 종료
             // 현재 표시된 Toast 취소
 //            if (System.currentTimeMillis() <= backKeyPressedTime + 2000) {
-            else{
+            else {
                 finish();
                 toast.cancel();
                 moveTaskToBack(true);
@@ -122,7 +126,29 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.action_settings) {
+        if (item.getItemId() == R.id.action_login) {
+            // Custom 레이아웃 연결 위해 LayoutInflater 객체 생성
+            LayoutInflater inflater = getLayoutInflater();
+            // Custom 레이아웃 Imflatation '인플레이션', 레이아웃 메모리에 객체화
+            View layout = inflater.inflate(R.layout.toast_custom, (ViewGroup) findViewById(R.id.toast_custom_layout));
+            // 보여줄 메시지 설정 위해 TextView 객체 연결, 인플레이션해서 생성된 View를 통해 findViewById 실행
+            TextView message = layout.findViewById(R.id.toast_custom_message);
+            message.setText("로그인 세팅중");
+            // 보여줄 이미지 설정 위해 ImageView 연결
+            ImageView image = layout.findViewById(R.id.toast_custom_image);
+            image.setBackgroundResource(R.mipmap.ic_launcher);
+
+            // Toast 객체 생성
+            Toast toast = new Toast(this);
+            // 위치설정, Gravity - 기준지정(상단,왼쪽 기준 0,0) / xOffset, yOffset - Gravity기준으로 위치 설정
+            toast.setGravity(Gravity.BOTTOM | Gravity.CENTER, 0, 16);
+            // Toast 보여줄 시간 'Toast.LENGTH_SHORT 짧게'
+            toast.setDuration(Toast.LENGTH_LONG);
+            // CustomLayout 객체 연결
+            toast.setView(layout);
+            // Toast 보여주기
+            toast.show();
+        } else if (item.getItemId() == R.id.action_settings) {
             Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.parse("package:" + getPackageName()));
             intent.addCategory(Intent.CATEGORY_DEFAULT);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
