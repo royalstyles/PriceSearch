@@ -6,6 +6,7 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">앱 정보</string>
+    <string name="action_login">로그인</string>
 
     <string name="menu_news">News</string>
     <string name="menu_movie">Movie</string>
