@@ -29,7 +29,7 @@
                 android:layout_marginLeft="16dp"
                 android:background="@color/purple_500"
                 android:gravity="center"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/white"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -52,6 +52,7 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     android:textSize="18sp"
+                    android:textColor="@color/black"
                     tools:text="movieName" />
 
                 <TextView
@@ -60,6 +61,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
                     android:textSize="12sp"
+                    android:textColor="@color/black"
                     tools:text="openDate" />
             </LinearLayout>
 
