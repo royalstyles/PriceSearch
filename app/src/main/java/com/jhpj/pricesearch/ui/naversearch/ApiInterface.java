@@ -8,7 +8,7 @@ import retrofit2.http.Query;
 
 public interface ApiInterface {
     @GET("search/{type}")
-    Call<String> getSearchResult(
+    Call<SearchResult> getSearchResult(
             @Header("X-Naver-Client-Id") String id,
             @Header("X-Naver-Client-Secret") String pw,
             @Path("type") String type,

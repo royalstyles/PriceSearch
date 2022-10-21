@@ -55,10 +55,11 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 
     // Gson 자바 객체를 JSON 표현으로 변환하는 데 사용할 수 있는 자바 라이브러리
-    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'com.google.code.gson:gson:2.8.9'
 
     // Glide 라이브러리(이미지 로딩)
     implementation 'com.github.bumptech.glide:glide:4.14.1'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
 
     // Volley 라이브러리(웹 요청과 응답을 단순화)
     implementation 'com.android.volley:volley:1.2.1'
