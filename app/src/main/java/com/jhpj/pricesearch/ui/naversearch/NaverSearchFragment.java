@@ -1,14 +1,11 @@
 package com.jhpj.pricesearch.ui.naversearch;
 
-import static android.widget.Toast.LENGTH_SHORT;
-
-import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,10 +18,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.jhpj.pricesearch.R;
 import com.jhpj.pricesearch.databinding.FragmentNaversearchBinding;
-import com.jhpj.pricesearch.ui.movie.BoxOfficeResult;
-import com.jhpj.pricesearch.ui.movie.MovieAdapter;
-import com.jhpj.pricesearch.ui.movie.Result;
-import com.jhpj.pricesearch.ui.movie.RetrofitInterface;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -34,6 +27,7 @@ public class NaverSearchFragment extends Fragment {
 
     private FragmentNaversearchBinding binding;
     private RecyclerView recyclerView;
+    private ProgressBar progressBar;
     private RecyclerView.Adapter mAdapter;
 
     private ApiInterface apiInterface;
@@ -44,6 +38,9 @@ public class NaverSearchFragment extends Fragment {
     private String client_pw = "WgN0GCiRcJ";
 
     private Toast toast;
+
+    // 1페이지에 10개씩 데이터를 불러온다
+    int page = 1, limit = 10;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -60,6 +57,7 @@ public class NaverSearchFragment extends Fragment {
         recyclerView = root.findViewById(R.id.naversearch_recylerView);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
+        progressBar = root.findViewById(R.id.progress_bar);
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -85,8 +83,9 @@ public class NaverSearchFragment extends Fragment {
     }
 
     void getResultSearch(String query) {
+        progressBar.setVisibility(View.VISIBLE);
         apiInterface = ApiClient.getInstance().create(ApiInterface.class);
-//        Call<String> call = apiInterface.getSearchResult(client_id, client_pw, "book.json", query);
+//        apiInterface.getSearchResult(client_id, client_pw, "book.json", query);
         apiInterface.getSearchResult(client_id, client_pw, "shop.json", query).enqueue(new Callback<SearchResult>() {
             @Override
             public void onResponse(Call<SearchResult> call, Response<SearchResult> response) {
@@ -94,10 +93,10 @@ public class NaverSearchFragment extends Fragment {
                     SearchResult result = response.body();
                     Log.d("retrofit", "Data fetch success");
                     mAdapter = new NaverSearchAdapter(result.getSearchDataList());
-
                     recyclerView.setAdapter(mAdapter);
+                    progressBar.setVisibility(View.GONE);
 
-                    Log.e(TAG, "성공 : " + result.getSearchDataList());
+                    Log.e(TAG, "성공 : " + result.getSearchDataList().toString());
                 } else {
                     Log.e(TAG, "실패 : " + response.body());
                 }
@@ -109,6 +108,7 @@ public class NaverSearchFragment extends Fragment {
             }
         });
     }
+
 
     @Override
     public void onDestroyView() {
