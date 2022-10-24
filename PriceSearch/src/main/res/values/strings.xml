@@ -11,4 +11,6 @@
     <string name="menu_news">News</string>
     <string name="menu_movie">Movie</string>
     <string name="menu_naversearch">NaverSearch</string>
+    <string name="default_notification_channel_id">default_notification_channel_id</string>
+    <string name="fcm_message">fcm_message</string>
 </resources>
