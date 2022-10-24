@@ -13,4 +13,9 @@
     <string name="menu_naversearch">NaverSearch</string>
     <string name="default_notification_channel_id">default_notification_channel_id</string>
     <string name="fcm_message">fcm_message</string>
+    <string name="Login">로그인</string>
+    <string name="SignUp">회원가입</string>
+    <string name="Email">email</string>
+    <string name="Password">password</string>
+    <string name="Password_check">password check</string>
 </resources>
