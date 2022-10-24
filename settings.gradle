@@ -13,4 +13,4 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "PriceSearch"
-include ':app'
+include ':PriceSearch'
