@@ -27,6 +27,8 @@ public class LoginActivity extends AppCompatActivity {
     private Button btLogin;
     private Button btSignup;
 
+    private final String TAG = this.getClass().getSimpleName();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +65,10 @@ public class LoginActivity extends AppCompatActivity {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+
+                    intent.putExtra("navtitle", "안드로이드 짱");
+                    intent.putExtra("navemail", user.getEmail());
+
                     startActivity(intent);
                     finish();
                 } else {

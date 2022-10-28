@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -49,43 +50,6 @@ public class MainActivity extends AppCompatActivity {
     private Toast toast;
 
     private final String TAG = this.getClass().getSimpleName();
-
-    @Override
-    public void onBackPressed() {
-        Log.d(getClass().getName(), "KJH : " + Thread.currentThread().getStackTrace()[2].getMethodName());
-        DrawerLayout drawer = binding.drawerLayout;
-        // 네비게이션 뷰가 열려있으면 닫는다.
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawers();
-        } else {
-//             기존 뒤로가기 버튼의 기능을 막기위해 주석처리 또는 삭제
-//             super.onBackPressed();
-//
-//             마지막으로 뒤로가기 버튼을 눌렀던 시간에 2초를 더해 현재시간과 비교 후
-//             마지막으로 뒤로가기 버튼을 눌렀던 시간이 2초가 지났으면 Toast Show
-//             2000 milliseconds = 2 seconds
-
-            @SuppressLint("SimpleDateFormat") SimpleDateFormat timeformat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-            Log.d(getClass().getName(),
-                    "KJH : " + "System.currentTimeMillis() : " + timeformat.format(new Date(System.currentTimeMillis())) + "\n"
-                            + "backKeyPressedTime : " + timeformat.format(new Date(backKeyPressedTime)));
-
-            if (System.currentTimeMillis() > backKeyPressedTime + 2000) {
-                backKeyPressedTime = System.currentTimeMillis();
-                toast = Toast.makeText(this, "'뒤로' 버튼을 한번 더 누르시면 종료됩니다.", Toast.LENGTH_SHORT);
-                toast.show();
-            }
-            // 마지막으로 뒤로가기 버튼을 눌렀던 시간에 2초를 더해 현재시간과 비교 후
-            // 마지막으로 뒤로가기 버튼을 눌렀던 시간이 2초가 지나지 않았으면 종료
-            // 현재 표시된 Toast 취소
-//            if (System.currentTimeMillis() <= backKeyPressedTime + 2000) {
-            else {
-                finish();
-                toast.cancel();
-                moveTaskToBack(true);
-            }
-        }
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -136,6 +100,26 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, "MessageToken : " + token, null);
             }
         });
+
+        // 로그인 시 로그인 정보를 메인 화면에 가져온다.
+//        View navheaderView = navigationView.inflateHeaderView(R.layout.nav_header_main);
+        View navheaderView = navigationView.getHeaderView(0);
+        TextView navtitle = navheaderView.findViewById(R.id.navtitle);
+        TextView navemail = navheaderView.findViewById(R.id.navemail);
+
+        Intent receiveIntent = getIntent();
+        Log.d(TAG, "receiveIntent.getStringExtra(\"navtitle\") : " + receiveIntent.getStringExtra("navtitle"));
+
+        if (receiveIntent.getStringExtra("navtitle") != null) {
+            navtitle.setText(receiveIntent.getStringExtra("navtitle"));
+            navemail.setText(receiveIntent.getStringExtra("navemail"));
+        }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
     }
 
     @Override
@@ -187,6 +171,43 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    @Override
+    public void onBackPressed() {
+        Log.d(getClass().getName(), "KJH : " + Thread.currentThread().getStackTrace()[2].getMethodName());
+        DrawerLayout drawer = binding.drawerLayout;
+        // 네비게이션 뷰가 열려있으면 닫는다.
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawers();
+        } else {
+//             기존 뒤로가기 버튼의 기능을 막기위해 주석처리 또는 삭제
+//             super.onBackPressed();
+//
+//             마지막으로 뒤로가기 버튼을 눌렀던 시간에 2초를 더해 현재시간과 비교 후
+//             마지막으로 뒤로가기 버튼을 눌렀던 시간이 2초가 지났으면 Toast Show
+//             2000 milliseconds = 2 seconds
+
+            @SuppressLint("SimpleDateFormat") SimpleDateFormat timeformat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+            Log.d(getClass().getName(),
+                    "KJH : " + "System.currentTimeMillis() : " + timeformat.format(new Date(System.currentTimeMillis())) + "\n"
+                            + "backKeyPressedTime : " + timeformat.format(new Date(backKeyPressedTime)));
+
+            if (System.currentTimeMillis() > backKeyPressedTime + 2000) {
+                backKeyPressedTime = System.currentTimeMillis();
+                toast = Toast.makeText(this, "'뒤로' 버튼을 한번 더 누르시면 종료됩니다.", Toast.LENGTH_SHORT);
+                toast.show();
+            }
+            // 마지막으로 뒤로가기 버튼을 눌렀던 시간에 2초를 더해 현재시간과 비교 후
+            // 마지막으로 뒤로가기 버튼을 눌렀던 시간이 2초가 지나지 않았으면 종료
+            // 현재 표시된 Toast 취소
+//            if (System.currentTimeMillis() <= backKeyPressedTime + 2000) {
+            else {
+                finish();
+                toast.cancel();
+                moveTaskToBack(true);
+            }
+        }
     }
 
     private void sendNotification(String messageBody) {

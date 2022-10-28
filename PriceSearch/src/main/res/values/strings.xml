@@ -18,4 +18,6 @@
     <string name="Email">email</string>
     <string name="Password">password</string>
     <string name="Password_check">password check</string>
+
+    <string name="submenu_01">submenu_01</string>
 </resources>

@@ -17,4 +17,13 @@
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/menu_naversearch" />
     </group>
+
+    <item android:title="@string/menu_naversearch">
+        <menu android:checkableBehavior="single">
+            <item
+                android:id="@+id/submenu_01"
+                android:icon="@drawable/ic_menu_slideshow"
+                android:title="@string/submenu_01" />
+        </menu>
+    </item>
 </menu>
