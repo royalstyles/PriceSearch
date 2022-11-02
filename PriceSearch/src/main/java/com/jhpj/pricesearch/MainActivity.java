@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
+    private NavigationView navigationView;
 
     // 마지막으로 뒤로가기 버튼을 눌렀던 시간 저장
     private long backKeyPressedTime = 0;
@@ -50,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
     private Toast toast;
 
     private final String TAG = this.getClass().getSimpleName();
+
+    private Boolean loginStatus = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         DrawerLayout drawer = binding.drawerLayout;
-        NavigationView navigationView = binding.navView;
+        navigationView = binding.navView;
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
@@ -100,7 +103,11 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, "MessageToken : " + token, null);
             }
         });
+    }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
         // 로그인 시 로그인 정보를 메인 화면에 가져온다.
 //        View navheaderView = navigationView.inflateHeaderView(R.layout.nav_header_main);
         View navheaderView = navigationView.getHeaderView(0);
@@ -113,21 +120,20 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "receiveIntent.getStringExtra(\"navtitle\") : " + receiveIntent.getStringExtra("navtitle"));
 
         if (receiveIntent.getStringExtra("navtitle") != null) {
+            loginStatus = true;
             navtitle.setText(receiveIntent.getStringExtra("navtitle"));
             navemail.setText(receiveIntent.getStringExtra("navemail"));
         }
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
-
-    }
-
-    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         Log.d(getClass().getName(), "KJH : " + Thread.currentThread().getStackTrace()[2].getMethodName());
+
+//        if (loginStatus = true) {
+//            menu.findItem(R.id.action_login).setTitle("로그아웃");
+//        }
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
