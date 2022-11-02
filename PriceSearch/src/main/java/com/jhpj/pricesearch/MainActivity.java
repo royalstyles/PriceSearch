@@ -104,6 +104,8 @@ public class MainActivity extends AppCompatActivity {
         // 로그인 시 로그인 정보를 메인 화면에 가져온다.
 //        View navheaderView = navigationView.inflateHeaderView(R.layout.nav_header_main);
         View navheaderView = navigationView.getHeaderView(0);
+        TextView navmadeby = navheaderView.findViewById(R.id.madebyid);
+        navmadeby.setText("Made by " + getResources().getString(R.string.app_email));
         TextView navtitle = navheaderView.findViewById(R.id.navtitle);
         TextView navemail = navheaderView.findViewById(R.id.navemail);
 
