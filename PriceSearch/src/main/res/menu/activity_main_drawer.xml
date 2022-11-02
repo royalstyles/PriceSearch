@@ -16,18 +16,19 @@
             android:id="@+id/nav_naversearch"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/menu_naversearch" />
-        <item
-            android:id="@+id/nav_realtimedb"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/menu_realtimedb" />
+
     </group>
 
-    <item android:title="@string/menu_naversearch">
+    <item android:title="@string/menu_realtimedb">
         <menu android:checkableBehavior="single">
             <item
-                android:id="@+id/submenu_01"
+                android:id="@+id/nav_realtimedb01"
                 android:icon="@drawable/ic_menu_slideshow"
-                android:title="@string/submenu_01" />
+                android:title="@string/menu_realtimedb01" />
+            <item
+                android:id="@+id/nav_realtimedb02"
+                android:icon="@drawable/ic_menu_slideshow"
+                android:title="@string/menu_realtimedb02" />
         </menu>
     </item>
 </menu>

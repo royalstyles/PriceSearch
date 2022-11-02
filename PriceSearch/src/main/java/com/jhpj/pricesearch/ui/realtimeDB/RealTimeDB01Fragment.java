@@ -19,11 +19,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.jhpj.pricesearch.databinding.FragmentRealtimedbBinding;
+import com.jhpj.pricesearch.databinding.FragmentRealtimedb1Binding;
 
-public class RealTimeDBFragment extends Fragment {
+public class RealTimeDB01Fragment extends Fragment {
 
-    private FragmentRealtimedbBinding binding;
+    private FragmentRealtimedb1Binding binding;
     DatabaseReference mdataref = FirebaseDatabase.getInstance().getReference();
     DatabaseReference conditionref = mdataref.child("Data");
 
@@ -36,14 +36,14 @@ public class RealTimeDBFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        RealTimeDBViewModel realTimeDBViewModel =
-                new ViewModelProvider(this).get(RealTimeDBViewModel.class);
+        RealTimeDB01ViewModel realTimeDB01ViewModel =
+                new ViewModelProvider(this).get(RealTimeDB01ViewModel.class);
 
-        binding = FragmentRealtimedbBinding.inflate(inflater, container, false);
+        binding = FragmentRealtimedb1Binding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         final TextView textView = binding.txtMainview;
-        realTimeDBViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        realTimeDB01ViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
 
         txt_showview = binding.txtShowview;
         edt_inputtext = binding.edtInputtext;
@@ -74,7 +74,8 @@ public class RealTimeDBFragment extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                toast = Toast.makeText(getContext(), "실시간 DB정보를 가져오는데 실패하였습니다.", Toast.LENGTH_SHORT);
+                toast.show();
             }
         });
 

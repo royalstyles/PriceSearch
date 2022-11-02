@@ -4,11 +4,11 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class RealTimeDBViewModel extends ViewModel {
+public class RealTimeDB01ViewModel extends ViewModel {
 
     private final MutableLiveData<String> mText;
 
-    public RealTimeDBViewModel() {
+    public RealTimeDB01ViewModel() {
         mText = new MutableLiveData<>();
         mText.setValue("This is RealTimeDB fragment");
     }

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_naversearch">
+    app:startDestination="@+id/nav_realtimedb02">
 
     <fragment
         android:id="@+id/nav_news"
@@ -24,8 +24,14 @@
         tools:layout="@layout/fragment_naversearch" />
 
     <fragment
-        android:id="@+id/nav_realtimedb"
-        android:name="com.jhpj.pricesearch.ui.realtimeDB.RealTimeDBFragment"
-        android:label="@string/menu_realtimedb"
-        tools:layout="@layout/fragment_realtimedb" />
+        android:id="@+id/nav_realtimedb01"
+        android:name="com.jhpj.pricesearch.ui.realtimeDB.RealTimeDB01Fragment"
+        android:label="@string/menu_realtimedb01"
+        tools:layout="@layout/fragment_realtimedb1" />
+
+    <fragment
+        android:id="@+id/nav_realtimedb02"
+        android:name="com.jhpj.pricesearch.ui.realtimeDB.RealTimeDB02Fragment"
+        android:label="@string/menu_realtimedb02"
+        tools:layout="@layout/fragment_realtimedb2" />
 </navigation>
