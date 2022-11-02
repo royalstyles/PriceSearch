@@ -16,6 +16,10 @@
             android:id="@+id/nav_naversearch"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/menu_naversearch" />
+        <item
+            android:id="@+id/nav_realtimedb"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/menu_realtimedb" />
     </group>
 
     <item android:title="@string/menu_naversearch">

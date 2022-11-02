@@ -11,6 +11,8 @@
     <string name="menu_news">News</string>
     <string name="menu_movie">Movie</string>
     <string name="menu_naversearch">NaverSearch</string>
+    <string name="menu_realtimedb">RealTimeDB</string>
+
     <string name="default_notification_channel_id">default_notification_channel_id</string>
     <string name="fcm_message">fcm_message</string>
     <string name="Login">로그인</string>
@@ -20,4 +22,6 @@
     <string name="Password_check">password check</string>
 
     <string name="submenu_01">submenu_01</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

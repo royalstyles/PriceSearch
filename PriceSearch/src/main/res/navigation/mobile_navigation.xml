@@ -22,4 +22,9 @@
         android:name="com.jhpj.pricesearch.ui.naversearch.NaverSearchFragment"
         android:label="@string/menu_naversearch"
         tools:layout="@layout/fragment_naversearch" />
+    <fragment
+        android:id="@+id/nav_realtimedb"
+        android:name="com.jhpj.pricesearch.ui.realtimeDB.RealTimeDBFragment"
+        android:label="@string/menu_realtimedb"
+        tools:layout="@layout/fragment_realtimedb" />
 </navigation>
