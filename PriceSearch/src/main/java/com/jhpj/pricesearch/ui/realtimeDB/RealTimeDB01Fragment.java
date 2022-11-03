@@ -20,10 +20,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.jhpj.pricesearch.databinding.FragmentRealtimedb1Binding;
+import com.jhpj.pricesearch.ui.CommonUtil;
 
 public class RealTimeDB01Fragment extends Fragment {
 
     private FragmentRealtimedb1Binding binding;
+    private CommonUtil commonUtil = new CommonUtil();
     DatabaseReference mdataref = FirebaseDatabase.getInstance().getReference();
     DatabaseReference conditionref = mdataref.child("Data");
 
@@ -82,8 +84,7 @@ public class RealTimeDB01Fragment extends Fragment {
         btn_send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                conditionref.setValue(edt_inputtext.getText().toString());
-                edt_inputtext.setText("");
+                writeData();
             }
         });
 
@@ -93,5 +94,11 @@ public class RealTimeDB01Fragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    private void writeData(){
+        commonUtil.hideKeyboard(this);
+        conditionref.setValue(edt_inputtext.getText().toString());
+        edt_inputtext.setText("");
     }
 }

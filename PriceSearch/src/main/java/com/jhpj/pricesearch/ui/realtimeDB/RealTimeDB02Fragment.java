@@ -22,6 +22,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.jhpj.pricesearch.databinding.FragmentRealtimedb2Binding;
+import com.jhpj.pricesearch.ui.CommonUtil;
 
 import java.util.HashMap;
 
@@ -38,6 +39,8 @@ public class RealTimeDB02Fragment extends Fragment {
 
     private final String TAG = this.getClass().getSimpleName();
 
+    private CommonUtil commonUtil = new CommonUtil();
+
     @Override
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -48,11 +51,13 @@ public class RealTimeDB02Fragment extends Fragment {
         mdataref = FirebaseDatabase.getInstance().getReference();
 
         edt_name = binding.edtName;
+        edt_name.setNextFocusDownId(binding.edtEmail.getId());
         edt_email = binding.edtEmail;
         edt_age = binding.edtAge;
         btn_save = binding.btnSave;
         edt_id = binding.edtId;
         btn_road = binding.btnRoad;
+        txt_data = binding.txtData;
 
         return root;
     }
@@ -75,14 +80,7 @@ public class RealTimeDB02Fragment extends Fragment {
 
                 writeUser(Integer.toString(i++), getUserName, getUserEmail, getUserAge);
 
-                edt_name.setText("");
-                edt_email.setText("");
-                edt_age.setText("");
 
-                // 키보드 내림
-                edt_name.clearFocus();
-                edt_email.clearFocus();
-                edt_age.clearFocus();
             }
         });
 
@@ -95,8 +93,13 @@ public class RealTimeDB02Fragment extends Fragment {
     }
 
     private void writeUser(String userid, String name, String email, String age) {
-        User user = new User(name, email, age);
+        edt_name.setText("");
+        edt_email.setText("");
+        edt_age.setText("");
 
+        commonUtil.hideKeyboard(this);
+
+        User user = new User(name, email, age);
         // 데이터 저장
         mdataref.child("users").child(userid).setValue(user).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
@@ -113,12 +116,19 @@ public class RealTimeDB02Fragment extends Fragment {
     }
 
     private void readUser(String userid) {
+        txt_data.setText("");
+        edt_id.clearFocus();
+
+        commonUtil.hideKeyboard(this);
+
         mdataref.child("users").child(userid).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Log.d(TAG, "snapshot : " + String.valueOf(snapshot.getValue().toString()));
-                User user = snapshot.getValue(User.class);
-                txt_data.setText("이름 : " + user.name + "#13#10" + "이메일 : " + user.email + "#13#10"+ "나이 : " + user.age + "#13#10");
+                Log.d(TAG, "snapshot : " + snapshot.getValue().toString());
+                if (snapshot.getValue(User.class) != null) {
+                    User user = snapshot.getValue(User.class);
+                    txt_data.setText("이름 : " + user.getName() + "\n" + "이메일 : " + user.getEmail() + "\n"+ "나이 : " + user.getAge());
+                }
             }
 
             @Override
