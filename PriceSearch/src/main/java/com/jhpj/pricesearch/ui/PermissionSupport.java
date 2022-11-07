@@ -124,6 +124,17 @@ public class PermissionSupport {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 dialog.cancel();
+                                AlertDialog.Builder alertDialog2 = new AlertDialog.Builder(context);
+                                alertDialog2.setTitle("경고");
+                                alertDialog2.setMessage("필수 권한이 없습니다." + "\n" + "앱을 다시 실행시켜 필수권한을 설정해 주세요." + "\n" + "앱을 종료 합니다.");
+                                alertDialog2.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.cancel();
+                                        activity.finish();
+                                    }
+                                });
+                                alertDialog2.show();
                             }
                         });
                         alertDialog.show();
