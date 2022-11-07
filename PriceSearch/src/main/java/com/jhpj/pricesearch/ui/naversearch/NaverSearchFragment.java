@@ -96,9 +96,9 @@ public class NaverSearchFragment extends Fragment {
                     recyclerView.setAdapter(mAdapter);
                     progressBar.setVisibility(View.GONE);
 
-                    Log.e(TAG, "성공 : " + result.toString());
+                    Log.d(TAG, "성공 : " + result.toString());
                 } else {
-                    Log.e(TAG, "실패 : " + response.body());
+                    Log.d(TAG, "실패 : " + response.body());
                 }
             }
 

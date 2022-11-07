@@ -23,6 +23,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.view.GravityCompat;
 import androidx.navigation.NavController;
@@ -34,9 +35,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.jhpj.pricesearch.databinding.ActivityMainBinding;
+import com.jhpj.pricesearch.ui.PermissionSupport;
 import com.jhpj.pricesearch.ui.login.LoginActivity;
 
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
@@ -53,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
     private final String TAG = this.getClass().getSimpleName();
 
     private Boolean loginStatus = false;
+    private PermissionSupport permissionSupport;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +94,19 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+        // 권한체크
+        permissionSupport = new PermissionSupport(this, this);
+        String[] permissionList = permissionSupport.getPermissionList();
+        if (!permissionSupport.runtimeCheckPermission(this, permissionList)) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                ActivityCompat.requestPermissions(this, permissionList, permissionSupport.getMULTIPLE_PERMISSION());
+            }
+        } else {
+            // 권한이 있는 경우..
+            Log.d("권한 체크", "권한이 모두 있습니다.");
+        }
+//        permissionSupport.Permission_CheckOne();
 
         // FireBase Token 토큰처리
         FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteListener<String>() {
@@ -216,6 +233,20 @@ public class MainActivity extends AppCompatActivity {
                 toast.cancel();
                 moveTaskToBack(true);
             }
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        Log.d(TAG, "requestCode : " + requestCode + "\n"
+                + "permissions.length  : " + permissions.length + "\n"
+                + "permissions : " + Arrays.toString(permissions) + "\n"
+                + "grantResults.length : " + grantResults.length + "\n"
+                + "grantResults : " + Arrays.toString(grantResults) + "\n");
+
+        if (!permissionSupport.PermissionsResult(requestCode, permissions, grantResults)){
+            permissionSupport.runtimeCheckPermission(this, permissions);
         }
     }
 
