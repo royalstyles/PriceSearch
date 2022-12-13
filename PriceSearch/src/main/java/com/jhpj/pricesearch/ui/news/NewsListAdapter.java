@@ -16,8 +16,8 @@ import com.jhpj.pricesearch.R;
 import java.util.ArrayList;
 
 public class NewsListAdapter extends RecyclerView.Adapter<NewsViewHolder> {
-    ArrayList<News> items = new ArrayList<News>();
-    private NewsItemClicked listener;
+    ArrayList<News> items = new ArrayList<>();
+    private final NewsItemClicked listener;
 
     public NewsListAdapter(NewsItemClicked newsItemClicked) {
         Log.d(getClass().getName(), "NewsListAdapter(NewsItemClicked newsItemClicked)");

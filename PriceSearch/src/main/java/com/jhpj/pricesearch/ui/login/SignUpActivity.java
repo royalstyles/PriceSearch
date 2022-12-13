@@ -1,8 +1,5 @@
 package com.jhpj.pricesearch.ui.login;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Patterns;
@@ -11,6 +8,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -25,7 +25,6 @@ public class SignUpActivity extends AppCompatActivity {
     private EditText etEmail;
     private EditText etPassword;
     private EditText etPasswordCheck;
-    private Button btSignup;
     private ProgressBar progressBar;
 
     private final String TAG = this.getClass().getSimpleName();
@@ -37,13 +36,13 @@ public class SignUpActivity extends AppCompatActivity {
 
         fAuth = FirebaseAuth.getInstance();
 
-        etEmail = (EditText) findViewById(R.id.et_emailArea);
-        etPassword = (EditText) findViewById(R.id.et_passwordArea);
-        etPasswordCheck = (EditText) findViewById(R.id.et_passwordcheckArea);
+        etEmail = findViewById(R.id.et_emailArea);
+        etPassword = findViewById(R.id.et_passwordArea);
+        etPasswordCheck = findViewById(R.id.et_passwordcheckArea);
 
-        progressBar = (ProgressBar) findViewById(R.id.progress_bar);
+        progressBar = findViewById(R.id.progress_bar);
 
-        btSignup = (Button) findViewById(R.id.btn_signup);
+        Button btSignup = findViewById(R.id.btn_signup);
         btSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

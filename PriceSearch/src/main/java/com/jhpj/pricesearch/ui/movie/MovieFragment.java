@@ -30,10 +30,7 @@ public class MovieFragment extends Fragment {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
 
-    private RetrofitClient retrofitClient;
-    private RetrofitInterface retrofitInterface;
-
-    private String API_KEY = "bc7dc8d95109b9f51ad46cff5c60c14c";
+    private final String API_KEY = "bc7dc8d95109b9f51ad46cff5c60c14c";
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -50,14 +47,14 @@ public class MovieFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
 
-        retrofitClient = RetrofitClient.getInstance();
-        retrofitInterface = RetrofitClient.getRetrofitInterface();
+        RetrofitClient retrofitClient = RetrofitClient.getInstance();
+        RetrofitInterface retrofitInterface = RetrofitClient.getRetrofitInterface();
 
         Log.d("retrofit", getDate());
 
         retrofitInterface.getBoxOffice(API_KEY, "20221003").enqueue(new Callback<Result>() {
             @Override
-            public void onResponse(Call<Result> call, Response<Result> response) {
+            public void onResponse(@NonNull Call<Result> call, @NonNull Response<Result> response) {
                 Result result = response.body();
                 BoxOfficeResult boxOfficeResult = result.getBoxOfficeResult();
                 Log.d("retrofit", "Data fetch success");
@@ -67,7 +64,7 @@ public class MovieFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<Result> call, Throwable t) {
+            public void onFailure(@NonNull Call<Result> call, @NonNull Throwable t) {
                 Log.d("retrofit", t.getMessage());
             }
         });
@@ -86,8 +83,7 @@ public class MovieFragment extends Fragment {
         long now = System.currentTimeMillis();
         Date date = new Date(now - 4);
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
-        String getDate = dateFormat.format(date);
 
-        return getDate;
+        return dateFormat.format(date);
     }
 }

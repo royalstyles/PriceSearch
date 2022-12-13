@@ -16,7 +16,7 @@ import com.jhpj.pricesearch.R;
 import java.util.List;
 
 public class NaverSearchAdapter extends RecyclerView.Adapter<NaverSearchAdapter.ViewHolder> {
-    private List<SearchDataList> datas;
+    private final List<SearchDataList> datas;
     private Activity activity;
 
     public NaverSearchAdapter(List<SearchDataList> data) {
@@ -41,7 +41,7 @@ public class NaverSearchAdapter extends RecyclerView.Adapter<NaverSearchAdapter.
         return datas.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         ImageView image;
         TextView title;
 

@@ -1,11 +1,6 @@
 package com.jhpj.pricesearch.ui.realtimeDB;
 
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +8,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -25,7 +24,7 @@ import com.jhpj.pricesearch.ui.CommonUtil;
 public class RealTimeDB01Fragment extends Fragment {
 
     private FragmentRealtimedb1Binding binding;
-    private CommonUtil commonUtil = new CommonUtil();
+    private final CommonUtil commonUtil = new CommonUtil();
     DatabaseReference mdataref = FirebaseDatabase.getInstance().getReference();
     DatabaseReference conditionref = mdataref.child("Data");
 
@@ -36,7 +35,7 @@ public class RealTimeDB01Fragment extends Fragment {
     private Toast toast;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         RealTimeDB01ViewModel realTimeDB01ViewModel =
                 new ViewModelProvider(this).get(RealTimeDB01ViewModel.class);

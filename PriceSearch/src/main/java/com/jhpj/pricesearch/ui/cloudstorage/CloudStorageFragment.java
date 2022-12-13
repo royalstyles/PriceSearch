@@ -2,16 +2,15 @@ package com.jhpj.pricesearch.ui.cloudstorage;
 
 import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -25,10 +24,8 @@ import com.jhpj.pricesearch.databinding.FragmentCloudstorageBinding;
 
 public class CloudStorageFragment extends Fragment {
     private FragmentCloudstorageBinding binding;
-    private FirebaseStorage storage = FirebaseStorage.getInstance();
-    private StorageReference rootRef = storage.getReference();
-    private StorageReference imgRef;
-    private StorageReference listRef;
+    private final FirebaseStorage storage = FirebaseStorage.getInstance();
+    private final StorageReference rootRef = storage.getReference();
     private LinearLayout linear_imageContainer;
     private CloudSotrageSubLayout subLayout;
     private ImageView img_loadview;
@@ -36,27 +33,25 @@ public class CloudStorageFragment extends Fragment {
     private final String TAG = this.getClass().getSimpleName();
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         binding = FragmentCloudstorageBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         img_loadview = binding.imgLoadview;
 
-        imgRef = rootRef.child("image.jpeg");
+        StorageReference imgRef = rootRef.child("image.jpeg");
         Log.w(TAG, "imgRef : " + imgRef.getName());
 
-        if (imgRef != null) {
-            imgRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                @Override
-                public void onSuccess(Uri uri) {
-                    Glide.with(getActivity()).load(uri).into(img_loadview);
-                }
-            });
-        }
+        imgRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Glide.with(getActivity()).load(uri).into(img_loadview);
+            }
+        });
 
         linear_imageContainer = binding.linearImageContainer;
-        listRef = rootRef.child("/gallery/");
+        StorageReference listRef = rootRef.child("/gallery/");
         listRef.listAll().addOnSuccessListener(new OnSuccessListener<ListResult>() {
             @Override
             public void onSuccess(ListResult listResult) {

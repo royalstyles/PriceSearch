@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitClient {
     private static RetrofitClient instance = null;
     private static RetrofitInterface retrofitInterface;
-    private static String baseUrl = "http://www.kobis.or.kr";
+    private static final String baseUrl = "http://www.kobis.or.kr";
 
     private RetrofitClient() {
         Retrofit retrofit = new Retrofit.Builder()

@@ -25,4 +25,9 @@
     <string name="Password_check">password check</string>
 
     <string name="submenu_01">submenu_01</string>
+    <string name="send">Send</string>
+    <string name="name">이름</string>
+    <string name="email">이메일</string>
+    <string name="age">나이</string>
+    <string name="recall">가져오기</string>
 </resources>

@@ -1,14 +1,14 @@
 package com.jhpj.pricesearch.ui.login;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -24,8 +24,6 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener fAuthListener;
     private EditText etEmail;
     private EditText etPassword;
-    private Button btLogin;
-    private Button btSignup;
 
     private final String TAG = this.getClass().getSimpleName();
 
@@ -35,10 +33,10 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         fAuth = FirebaseAuth.getInstance();
-        etEmail = (EditText) findViewById(R.id.et_emailArea);
-        etPassword = (EditText) findViewById(R.id.et_passwordArea);
+        etEmail = findViewById(R.id.et_emailArea);
+        etPassword = findViewById(R.id.et_passwordArea);
 
-        btSignup = (Button) findViewById(R.id.btn_signup);
+        Button btSignup = findViewById(R.id.btn_signup);
         btSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -47,7 +45,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        btLogin = (Button) findViewById(R.id.btn_login);
+        Button btLogin = findViewById(R.id.btn_login);
         btLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,8 +69,6 @@ public class LoginActivity extends AppCompatActivity {
 
                     startActivity(intent);
                     finish();
-                } else {
-
                 }
             }
         };
@@ -99,7 +95,6 @@ public class LoginActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        FirebaseUser currentUser = fAuth.getCurrentUser();
     }
 
     @Override

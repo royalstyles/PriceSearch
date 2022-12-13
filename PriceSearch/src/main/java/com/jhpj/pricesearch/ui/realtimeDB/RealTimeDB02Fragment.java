@@ -1,10 +1,6 @@
 package com.jhpj.pricesearch.ui.realtimeDB;
 
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +9,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -28,7 +27,6 @@ import java.util.HashMap;
 
 public class RealTimeDB02Fragment extends Fragment {
 
-    private FragmentRealtimedb2Binding binding;
     private DatabaseReference mdataref;
     private Button btn_save, btn_road;
     private EditText edt_name, edt_email, edt_age, edt_id;
@@ -39,13 +37,13 @@ public class RealTimeDB02Fragment extends Fragment {
 
     private final String TAG = this.getClass().getSimpleName();
 
-    private CommonUtil commonUtil = new CommonUtil();
+    private final CommonUtil commonUtil = new CommonUtil();
 
     @Override
 
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentRealtimedb2Binding.inflate(inflater, container, false);
+        com.jhpj.pricesearch.databinding.FragmentRealtimedb2Binding binding = FragmentRealtimedb2Binding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         mdataref = FirebaseDatabase.getInstance().getReference();
@@ -73,7 +71,7 @@ public class RealTimeDB02Fragment extends Fragment {
                 String getUserEmail = edt_email.getText().toString();
                 String getUserAge = edt_age.getText().toString();
 
-                HashMap result = new HashMap<>();
+                HashMap<Object, Object> result = new HashMap<>();
                 result.put("name", getUserName);
                 result.put("email", getUserEmail);
                 result.put("age", getUserAge);

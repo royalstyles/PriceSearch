@@ -14,7 +14,7 @@ import java.util.List;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> {
 
-    private List<DailyBoxOfficeList> items;
+    private final List<DailyBoxOfficeList> items;
 
     public MovieAdapter(List<DailyBoxOfficeList> items) {
         this.items = items;
@@ -39,7 +39,9 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView rank, movieNm, openDt;
+        private final TextView rank;
+        private final TextView movieNm;
+        private final TextView openDt;
 
         public ViewHolder(View itemView) {
             super(itemView);

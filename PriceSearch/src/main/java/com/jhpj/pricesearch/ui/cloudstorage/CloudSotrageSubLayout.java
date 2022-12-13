@@ -28,10 +28,10 @@ public class CloudSotrageSubLayout extends LinearLayout {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         inflater.inflate(R.layout.item_cloudsotrage_image, this, true);
 
-        ImageView img_image = (ImageView) findViewById(R.id.img_image);
+        ImageView img_image = findViewById(R.id.img_image);
 
         Glide.with(this)
-                .load(items.getImagUrl().toString())
+                .load(items.getImagUrl())
                 .override(300, 300)
                 .centerCrop()
                 .into(img_image);

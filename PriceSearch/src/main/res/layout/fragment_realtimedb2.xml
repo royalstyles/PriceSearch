@@ -20,8 +20,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
-            android:privateImeOptions="defaultInputmode=korean"
-            android:hint="이름" />
+            android:hint="@string/name"
+            android:privateImeOptions="defaultInputmode=korean" />
 
         <EditText
             android:id="@+id/edt_email"
@@ -29,8 +29,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
-            android:privateImeOptions="defaultInputmode=english"
-            android:hint="이메일" />
+            android:hint="@string/email"
+            android:privateImeOptions="defaultInputmode=english" />
 
         <EditText
             android:id="@+id/edt_age"
@@ -38,8 +38,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
-            android:inputType="number"
-            android:hint="나이" />
+            android:hint="@string/age"
+            android:inputType="number" />
 
         <Button
             android:id="@+id/btn_save"
@@ -47,16 +47,16 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
-            android:text="전송" />
+            android:text="@string/send" />
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linear_datasearch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:id="@+id/linear_datasearch"
         android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linear_datainput">
 
@@ -65,14 +65,14 @@
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:inputType="number"
-            android:hint="가져올 데이터의 id" />
+            android:hint="가져올 데이터의 id"
+            android:inputType="number" />
 
         <Button
             android:id="@+id/btn_road"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="가져오기" />
+            android:text="@string/recall" />
 
     </LinearLayout>
 
@@ -81,10 +81,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:gravity="center"
         android:layout_marginTop="20dp"
+        android:gravity="center"
         android:textSize="20sp"
-        app:layout_constraintTop_toBottomOf="@+id/linear_datasearch"/>
+        app:layout_constraintTop_toBottomOf="@+id/linear_datasearch" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

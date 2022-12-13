@@ -22,17 +22,16 @@ import androidx.core.content.ContextCompat;
 import java.util.Arrays;
 
 public class PermissionSupport {
-    private Context context;
-    private Activity activity;
+    private final Context context;
+    private final Activity activity;
 
     private final int SINGLE_PERMISSION = 1004;
     private final int MULTIPLE_PERMISSION = 1005;
 
     private final String TAG = this.getClass().getSimpleName();
 
-    private String[] permissionList = {
+    private final String[] permissionList = {
             Manifest.permission.READ_EXTERNAL_STORAGE,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE,
             Manifest.permission.ACCESS_FINE_LOCATION
     };
 
@@ -102,7 +101,7 @@ public class PermissionSupport {
             case MULTIPLE_PERMISSION:
                 int index = 0;
                 for (Integer result : grantResults) {
-                    if (grantResults.length > 0 && result == PackageManager.PERMISSION_GRANTED) {
+                    if (result == PackageManager.PERMISSION_GRANTED) {
                         // 권한이 이미 있는 경우
                         Log.d(TAG, "권한이 이미 있음 " + permissions[index]);
                     } else {

@@ -92,7 +92,7 @@ public class MyFirebaseMsgService extends FirebaseMessagingService {
             messageId = ""; // [메시지 아이디]
         }
 
-        JSONObject sendRecive = null;
+        JSONObject sendRecive;
         try {
             sendRecive = new JSONObject();
             sendRecive.put("title", title); // [푸시 타이틀]
@@ -104,19 +104,6 @@ public class MyFirebaseMsgService extends FirebaseMessagingService {
         }
 
         // [포그라운드 브로드 캐스트 알림 전달 실시]
-        /*
-        try {
-            if (sendRecive != null){
-                Intent intent = new Intent(S_FinalData.NOTI_RECEIVE_PUSH_MESSAGE);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                intent.putExtra("message", sendRecive.toString());
-                LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
-            }
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
-        */
 
         // [SEARCH FAST] : [오레오 버전 분기 처리]
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) { // [오레오 버전 이상 노티피케이션 호출]
@@ -142,7 +129,7 @@ public class MyFirebaseMsgService extends FirebaseMessagingService {
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
 
             // [pendingIntent 설정]
-            pendingIntent = PendingIntent.getActivity(getApplication(), 1, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+            pendingIntent = PendingIntent.getActivity(getApplication(), 1, null, PendingIntent.FLAG_CANCEL_CURRENT);
             // -----------------------------------------
         } catch (Exception e) {
             e.printStackTrace();
@@ -151,8 +138,8 @@ public class MyFirebaseMsgService extends FirebaseMessagingService {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) { // TODO [오레오 버전 이상 >> 채널 필요]
             int importance; // [알림 중요도]
             int prior; // [알림 중요도]
-            String Noti_Channel_ID = ""; // [알림 채널 아이디]
-            String Noti_Channel_Group_ID = ""; // [알림 채널 그룹 아이디]
+            String Noti_Channel_ID; // [알림 채널 아이디]
+            String Noti_Channel_Group_ID; // [알림 채널 그룹 아이디]
 
             if (flag == 0 || flag == 1) {
                 // [0 == [무음] / 1 == [진동]]
@@ -178,10 +165,10 @@ public class MyFirebaseMsgService extends FirebaseMessagingService {
             //notificationChannel.setShowBadge(true); // 뱃지 카운트 실시 (디폴트 true)
 
             if (notificationManager.getNotificationChannel(Noti_Channel_ID) != null) { // [이미 만들어진 채널이 존재할 경우]
-                Log.i("", "\n" + "[" + String.valueOf(TAG) + " >> startForegroundService() :: 오레오 버전 [이상] 채널 상태 확인]");
+                Log.i("", "\n" + "[" + TAG + " >> startForegroundService() :: 오레오 버전 [이상] 채널 상태 확인]");
                 Log.i("", "\n" + "[상 태 :: " + "채널이 이미 존재합니다" + "]");
             } else {
-                Log.i("", "\n" + "[" + String.valueOf(TAG) + " >> startForegroundService() :: 오레오 버전 [이상] 채널 상태 확인]");
+                Log.i("", "\n" + "[" + TAG + " >> startForegroundService() :: 오레오 버전 [이상] 채널 상태 확인]");
                 Log.i("", "\n" + "[상 태 :: " + "채널이 없어서 만듭니다" + "]");
                 notificationManager.createNotificationChannel(notificationChannel); // [알림 채널 생성 실시]
             }
@@ -260,7 +247,7 @@ public class MyFirebaseMsgService extends FirebaseMessagingService {
 
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) { //TODO [오레오 버전 미만 >> 설정 실시]
             int prior; // [알림 중요도]
-            String Noti_Channel_ID = ""; // [알림 채널]
+            String Noti_Channel_ID; // [알림 채널]
             // -----------------------------------------
             if (flag == 0 || flag == 1) {
                 // [0 == [무음] / 1 == [진동]]
@@ -273,8 +260,8 @@ public class MyFirebaseMsgService extends FirebaseMessagingService {
                 prior = NotificationCompat.PRIORITY_HIGH;
                 Noti_Channel_ID = "Hight_Noti_Setting"; // [알림 채널 아이디]
             }
-            Log.i("", "\n" + "[" + String.valueOf(TAG) + " >> startBackgroundService() :: 오레오 버전 [미만] 채널 명칭 확인]");
-            Log.i("", "\n" + "[Noti_Channel_ID :: " + String.valueOf(Noti_Channel_ID) + "]");
+            Log.i("", "\n" + "[" + TAG + " >> startBackgroundService() :: 오레오 버전 [미만] 채널 명칭 확인]");
+            Log.i("", "\n" + "[Noti_Channel_ID :: " + Noti_Channel_ID + "]");
 
             NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(), Noti_Channel_ID) // [NotificationCompat.Builder 객체 생성]
                     .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher_foreground)) // [메시지 박스에 아이콘 표시]
@@ -332,16 +319,16 @@ public class MyFirebaseMsgService extends FirebaseMessagingService {
     // TODO [화면 강제로 기상 실시 메소드]
     public void PushCallDisplay() {
 
-        /**
-         * // -----------------------------------------
-         * [PushCallDisplay 메소드 설명]
-         * // -----------------------------------------
-         * 1. 모바일 디스플레이 화면 강제 기상 깨우기 수행 메소드
-         * // -----------------------------------------
-         * 2. 필요 퍼미션 :
-         *   - <uses-permission android:name="android.permission.WAKE_LOCK"/>
-         * // -----------------------------------------
-         * */
+        /*
+          // -----------------------------------------
+          [PushCallDisplay 메소드 설명]
+          // -----------------------------------------
+          1. 모바일 디스플레이 화면 강제 기상 깨우기 수행 메소드
+          // -----------------------------------------
+          2. 필요 퍼미션 :
+            - <uses-permission android:name="android.permission.WAKE_LOCK"/>
+          // -----------------------------------------
+          */
 
         try {
             PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
@@ -359,16 +346,16 @@ public class MyFirebaseMsgService extends FirebaseMessagingService {
 
     public void PushCallVibrator() {
 
-        /**
-         * // -----------------------------------------
-         * [PushCallVibrator 메소드 설명]
-         * // -----------------------------------------
-         * 1. 모바일 진동 발생 수행 메소드
-         * // -----------------------------------------
-         * 2. 필요 퍼미션 :
-         *   - <uses-permission android:name="android.permission.VIBRATE" />
-         * // -----------------------------------------
-         * */
+        /*
+          // -----------------------------------------
+          [PushCallVibrator 메소드 설명]
+          // -----------------------------------------
+          1. 모바일 진동 발생 수행 메소드
+          // -----------------------------------------
+          2. 필요 퍼미션 :
+            - <uses-permission android:name="android.permission.VIBRATE" />
+          // -----------------------------------------
+          */
 
         try {
             // Vibrator vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
@@ -396,13 +383,13 @@ public class MyFirebaseMsgService extends FirebaseMessagingService {
 
     // TODO [모바일 알림음 강제 발생 메소드]
     public void PushCallSound() {
-        /**
-         * // -----------------------------------------
-         * [PushCallSound 메소드 설명]
-         * // -----------------------------------------
-         * 1. 모바일 기본 알림음 수행 메소드
-         * // -----------------------------------------
-         * */
+        /*
+          // -----------------------------------------
+          [PushCallSound 메소드 설명]
+          // -----------------------------------------
+          1. 모바일 기본 알림음 수행 메소드
+          // -----------------------------------------
+          */
 
         try {
             Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);

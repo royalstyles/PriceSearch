@@ -15,7 +15,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -77,7 +76,7 @@ public class NewsFragment extends Fragment implements NewsItemClicked {
             public void onResponse(JSONObject response) {
                 try {
                     JSONArray newsJsonArray = response.getJSONArray("articles");
-                    ArrayList<News> newsArrayList = new ArrayList<News>();
+                    ArrayList<News> newsArrayList = new ArrayList<>();
                     for (int i = 0; i < newsJsonArray.length(); i++) {
                         JSONObject newsJsonObject = newsJsonArray.getJSONObject(i);
                         News news = new News(
@@ -101,9 +100,9 @@ public class NewsFragment extends Fragment implements NewsItemClicked {
             }
         }) {
             @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
+            public Map<String, String> getHeaders() {
                 Log.d(getClass().getName(), "getHeaders()");
-                HashMap<String, String> headers = new HashMap<String, String>();
+                HashMap<String, String> headers = new HashMap<>();
                 headers.put("User-Agent", "Mozilla/5.0");
                 return headers;
             }
@@ -116,9 +115,8 @@ public class NewsFragment extends Fragment implements NewsItemClicked {
         long now = System.currentTimeMillis();
         Date date = new Date(now - 3);
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        String getDate = dateFormat.format(date);
 
-        return getDate;
+        return dateFormat.format(date);
     }
 
     @Override
