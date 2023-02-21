@@ -48,7 +48,7 @@
         app:layout_constraintTop_toBottomOf="@+id/addButton">
 
         <TextView
-            android:id="@+id/textView1"
+            android:id="@+id/lottonum1"
             android:textSize="18sp"
             android:textStyle="bold"
             android:text="1"
@@ -61,7 +61,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/lottonum2"
             android:textSize="18sp"
             android:textStyle="bold"
             android:text="1"
@@ -74,7 +74,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/lottonum3"
             android:textSize="18sp"
             android:textStyle="bold"
             android:text="1"
@@ -87,7 +87,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/lottonum4"
             android:textSize="18sp"
             android:textStyle="bold"
             android:text="1"
@@ -100,7 +100,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/lottonum5"
             android:textSize="18sp"
             android:textStyle="bold"
             android:text="1"
@@ -113,7 +113,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/lottonum6"
             android:textSize="18sp"
             android:textStyle="bold"
             android:text="1"
