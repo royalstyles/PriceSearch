@@ -12,6 +12,7 @@
     <string name="menu_movie">Movie</string>
     <string name="menu_naversearch">NaverSearch</string>
     <string name="menu_cloudstorage">CloudStorage</string>
+    <string name="menu_lotto">로또</string>
     <string name="menu_realtimedb">RealTimeDB</string>
     <string name="menu_realtimedb01">RealTimeDB01</string>
     <string name="menu_realtimedb02">RealTimeDB02</string>
@@ -30,4 +31,10 @@
     <string name="email">이메일</string>
     <string name="age">나이</string>
     <string name="recall">가져오기</string>
+
+    <string name="add_button">번호 추가하기</string>
+    <string name="init_button">초기화</string>
+    <string name="start_button">자동 생성 시작</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

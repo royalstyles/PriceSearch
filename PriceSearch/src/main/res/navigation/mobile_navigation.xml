@@ -40,4 +40,9 @@
         android:name="com.jhpj.pricesearch.ui.realtimeDB.RealTimeDB02Fragment"
         android:label="@string/menu_realtimedb02"
         tools:layout="@layout/fragment_realtimedb2" />
+    <fragment
+        android:id="@+id/nav_lotto"
+        android:name="com.jhpj.pricesearch.ui.lotto.LottoFragment"
+        android:label="@string/menu_lotto"
+        tools:layout="@layout/fragment_lotto" />
 </navigation>
