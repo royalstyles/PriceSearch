@@ -5,7 +5,6 @@ import static com.jhpj.pricesearch.R.drawable.circle_gray;
 import static com.jhpj.pricesearch.R.drawable.circle_green;
 import static com.jhpj.pricesearch.R.drawable.circle_red;
 import static com.jhpj.pricesearch.R.drawable.circle_yellow;
-import static com.jhpj.pricesearch.R.drawable.lotto;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -21,13 +20,9 @@ import android.widget.NumberPicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.jhpj.pricesearch.R;
-import com.jhpj.pricesearch.databinding.FragmentCloudstorageBinding;
 import com.jhpj.pricesearch.databinding.FragmentLottoBinding;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
