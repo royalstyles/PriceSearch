@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_lotto">
+    app:startDestination="@+id/nav_navermap">
 
     <fragment
         android:id="@+id/nav_news"
@@ -16,6 +16,12 @@
         android:name="com.jhpj.pricesearch.ui.movie.MovieFragment"
         android:label="@string/menu_movie"
         tools:layout="@layout/fragment_movie" />
+
+    <fragment
+        android:id="@+id/nav_navermap"
+        android:name="com.jhpj.pricesearch.ui.naverMap.MapFragment"
+        android:label="@string/menu_navermap"
+        tools:layout="@layout/fragment_map" />
 
     <fragment
         android:id="@+id/nav_naversearch"

@@ -10,6 +10,7 @@
 
     <string name="menu_news">News</string>
     <string name="menu_movie">Movie</string>
+    <string name="menu_navermap">네이버지도</string>
     <string name="menu_naversearch">NaverSearch</string>
     <string name="menu_cloudstorage">CloudStorage</string>
     <string name="menu_lotto">로또</string>

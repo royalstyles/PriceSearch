@@ -13,6 +13,10 @@
             android:icon="@drawable/ic_menu_gallery"
             android:title="@string/menu_movie" />
         <item
+            android:id="@+id/nav_navermap"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/menu_navermap" />
+        <item
             android:id="@+id/nav_naversearch"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/menu_naversearch" />
