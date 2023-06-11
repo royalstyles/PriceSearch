@@ -11,14 +11,20 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.jhpj.pricesearch.databinding.FragmentMapBinding;
+import com.naver.maps.map.LocationTrackingMode;
 import com.naver.maps.map.MapView;
 import com.naver.maps.map.NaverMap;
 import com.naver.maps.map.OnMapReadyCallback;
+import com.naver.maps.map.UiSettings;
+import com.naver.maps.map.util.FusedLocationSource;
 
 public class MapFragment extends Fragment implements OnMapReadyCallback {
 
     private FragmentMapBinding binding;
     private MapView mapView;
+    private NaverMap naverMap;
+    private UiSettings uiSettings;
+    private FusedLocationSource locationSource;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -35,6 +41,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         super.onViewCreated(view, savedInstanceState);
         mapView = binding.navermap;
         mapView.getMapAsync((OnMapReadyCallback) this);
+
         mapView.onCreate(savedInstanceState);
     }
 
@@ -82,6 +89,12 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
     @Override
     public void onMapReady(@NonNull NaverMap naverMap) {
+        this.naverMap = naverMap;
+        naverMap.setLocationSource(naverMap.getLocationSource());
 
+        naverMap.setLocationTrackingMode(LocationTrackingMode.Follow);
+
+        uiSettings = naverMap.getUiSettings();
+        uiSettings.setLocationButtonEnabled(true);
     }
 }
