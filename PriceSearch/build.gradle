@@ -29,6 +29,10 @@ android {
     }
     buildFeatures {
         viewBinding true
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion '1.6.21'
     }
 
     android {
@@ -41,7 +45,7 @@ android {
 dependencies {
     implementation 'com.google.firebase:firebase-auth:22.0.0'
     implementation 'com.google.firebase:firebase-database:20.2.2'
-    implementation 'com.google.firebase:firebase-storage:20.2.0'
+    implementation 'com.google.firebase:firebase-storage:20.2.1'
     implementation 'com.onesignal:OneSignal:[4.0.0, 4.99.99]'
     apply plugin: 'com.google.gms.google-services'
 
@@ -81,5 +85,8 @@ dependencies {
     // 네이버 지도 SDK
     implementation 'com.naver.maps:map-sdk:3.16.2'
     implementation 'com.google.android.gms:play-services-location:21.0.1'
+
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.9.0'
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.0'
 
 }
